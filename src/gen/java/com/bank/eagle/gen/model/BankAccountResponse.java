@@ -1,134 +1,280 @@
 package com.bank.eagle.gen.model;
 
-import java.util.Objects;
-import java.util.ArrayList;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import jakarta.validation.constraints.*;
 import jakarta.validation.Valid;
+
 import io.swagger.annotations.*;
+import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2025-11-03T11:08:10.131371Z[Europe/London]", comments = "Generator version: 7.17.0")
+
+
+@JsonTypeName("BankAccountResponse")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2025-11-03T14:29:53.586085Z[Europe/London]", comments = "Generator version: 7.17.0")
 public class BankAccountResponse   {
-  
   private String accountNumber;
-
-  /**
-   * Gets or Sets sortCode
-   */
   public enum SortCodeEnum {
-    _10_10_10("10-10-10");
+
+    _10_10_10(String.valueOf("10-10-10"));
+
+
     private String value;
 
-    SortCodeEnum(String value) {
-      this.value = value;
+    SortCodeEnum (String v) {
+        value = v;
+    }
+
+    public String value() {
+        return value;
     }
 
     @Override
     @JsonValue
     public String toString() {
-      return String.valueOf(value);
+        return String.valueOf(value);
     }
-  }
+
+    /**
+     * Convert a String into String, as specified in the
+     * <a href="https://download.oracle.com/otndocs/jcp/jaxrs-2_0-fr-eval-spec/index.html">See JAX RS 2.0 Specification, section 3.2, p. 12</a>
+     */
+    public static SortCodeEnum fromString(String s) {
+        for (SortCodeEnum b : SortCodeEnum.values()) {
+            // using Objects.toString() to be safe if value type non-object type
+            // because types like 'int' etc. will be auto-boxed
+            if (Objects.toString(b.value).equals(s)) {
+                return b;
+            }
+        }
+        throw new IllegalArgumentException("Unexpected string value '" + s + "'");
+    }
+
+    @JsonCreator
+    public static SortCodeEnum fromValue(String value) {
+        for (SortCodeEnum b : SortCodeEnum.values()) {
+            if (b.value.equals(value)) {
+                return b;
+            }
+        }
+        throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+}
 
   private SortCodeEnum sortCode;
   private String name;
-
-  /**
-   * Gets or Sets accountType
-   */
   public enum AccountTypeEnum {
-    PERSONAL("personal");
+
+    PERSONAL(String.valueOf("personal"));
+
+
     private String value;
 
-    AccountTypeEnum(String value) {
-      this.value = value;
+    AccountTypeEnum (String v) {
+        value = v;
+    }
+
+    public String value() {
+        return value;
     }
 
     @Override
     @JsonValue
     public String toString() {
-      return String.valueOf(value);
+        return String.valueOf(value);
     }
-  }
+
+    /**
+     * Convert a String into String, as specified in the
+     * <a href="https://download.oracle.com/otndocs/jcp/jaxrs-2_0-fr-eval-spec/index.html">See JAX RS 2.0 Specification, section 3.2, p. 12</a>
+     */
+    public static AccountTypeEnum fromString(String s) {
+        for (AccountTypeEnum b : AccountTypeEnum.values()) {
+            // using Objects.toString() to be safe if value type non-object type
+            // because types like 'int' etc. will be auto-boxed
+            if (Objects.toString(b.value).equals(s)) {
+                return b;
+            }
+        }
+        throw new IllegalArgumentException("Unexpected string value '" + s + "'");
+    }
+
+    @JsonCreator
+    public static AccountTypeEnum fromValue(String value) {
+        for (AccountTypeEnum b : AccountTypeEnum.values()) {
+            if (b.value.equals(value)) {
+                return b;
+            }
+        }
+        throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+}
 
   private AccountTypeEnum accountType;
   private Double balance;
-
-  /**
-   * Gets or Sets currency
-   */
   public enum CurrencyEnum {
-    GBP("GBP");
+
+    GBP(String.valueOf("GBP"));
+
+
     private String value;
 
-    CurrencyEnum(String value) {
-      this.value = value;
+    CurrencyEnum (String v) {
+        value = v;
+    }
+
+    public String value() {
+        return value;
     }
 
     @Override
     @JsonValue
     public String toString() {
-      return String.valueOf(value);
+        return String.valueOf(value);
     }
-  }
+
+    /**
+     * Convert a String into String, as specified in the
+     * <a href="https://download.oracle.com/otndocs/jcp/jaxrs-2_0-fr-eval-spec/index.html">See JAX RS 2.0 Specification, section 3.2, p. 12</a>
+     */
+    public static CurrencyEnum fromString(String s) {
+        for (CurrencyEnum b : CurrencyEnum.values()) {
+            // using Objects.toString() to be safe if value type non-object type
+            // because types like 'int' etc. will be auto-boxed
+            if (Objects.toString(b.value).equals(s)) {
+                return b;
+            }
+        }
+        throw new IllegalArgumentException("Unexpected string value '" + s + "'");
+    }
+
+    @JsonCreator
+    public static CurrencyEnum fromValue(String value) {
+        for (CurrencyEnum b : CurrencyEnum.values()) {
+            if (b.value.equals(value)) {
+                return b;
+            }
+        }
+        throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+}
 
   private CurrencyEnum currency;
   private Date createdTimestamp;
   private Date updatedTimestamp;
 
+  protected BankAccountResponse(BankAccountResponseBuilder<?, ?> b) {
+    this.accountNumber = b.accountNumber;
+    this.sortCode = b.sortCode;
+    this.name = b.name;
+    this.accountType = b.accountType;
+    this.balance = b.balance;
+    this.currency = b.currency;
+    this.createdTimestamp = b.createdTimestamp;
+    this.updatedTimestamp = b.updatedTimestamp;
+  }
+
+  public BankAccountResponse() {
+  }
+
+  @JsonCreator
+  public BankAccountResponse(
+    @JsonProperty(required = true, value = "accountNumber") String accountNumber,
+    @JsonProperty(required = true, value = "sortCode") SortCodeEnum sortCode,
+    @JsonProperty(required = true, value = "name") String name,
+    @JsonProperty(required = true, value = "accountType") AccountTypeEnum accountType,
+    @JsonProperty(required = true, value = "balance") Double balance,
+    @JsonProperty(required = true, value = "currency") CurrencyEnum currency,
+    @JsonProperty(required = true, value = "createdTimestamp") Date createdTimestamp,
+    @JsonProperty(required = true, value = "updatedTimestamp") Date updatedTimestamp
+  ) {
+    this.accountNumber = accountNumber;
+    this.sortCode = sortCode;
+    this.name = name;
+    this.accountType = accountType;
+    this.balance = balance;
+    this.currency = currency;
+    this.createdTimestamp = createdTimestamp;
+    this.updatedTimestamp = updatedTimestamp;
+  }
+
   /**
    **/
+  public BankAccountResponse accountNumber(String accountNumber) {
+    this.accountNumber = accountNumber;
+    return this;
+  }
+
   
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty("accountNumber")
-  @NotNull
-  public String getAccountNumber() {
+  @JsonProperty(required = true, value = "accountNumber")
+  @NotNull public String getAccountNumber() {
     return accountNumber;
   }
+
+  @JsonProperty(required = true, value = "accountNumber")
   public void setAccountNumber(String accountNumber) {
     this.accountNumber = accountNumber;
   }
 
   /**
    **/
+  public BankAccountResponse sortCode(SortCodeEnum sortCode) {
+    this.sortCode = sortCode;
+    return this;
+  }
+
   
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty("sortCode")
-  @NotNull
-  public SortCodeEnum getSortCode() {
+  @JsonProperty(required = true, value = "sortCode")
+  @NotNull public SortCodeEnum getSortCode() {
     return sortCode;
   }
+
+  @JsonProperty(required = true, value = "sortCode")
   public void setSortCode(SortCodeEnum sortCode) {
     this.sortCode = sortCode;
   }
 
   /**
    **/
+  public BankAccountResponse name(String name) {
+    this.name = name;
+    return this;
+  }
+
   
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty("name")
-  @NotNull
-  public String getName() {
+  @JsonProperty(required = true, value = "name")
+  @NotNull public String getName() {
     return name;
   }
+
+  @JsonProperty(required = true, value = "name")
   public void setName(String name) {
     this.name = name;
   }
 
   /**
    **/
+  public BankAccountResponse accountType(AccountTypeEnum accountType) {
+    this.accountType = accountType;
+    return this;
+  }
+
   
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty("accountType")
-  @NotNull
-  public AccountTypeEnum getAccountType() {
+  @JsonProperty(required = true, value = "accountType")
+  @NotNull public AccountTypeEnum getAccountType() {
     return accountType;
   }
+
+  @JsonProperty(required = true, value = "accountType")
   public void setAccountType(AccountTypeEnum accountType) {
     this.accountType = accountType;
   }
@@ -138,52 +284,76 @@ public class BankAccountResponse   {
    * minimum: 0.0
    * maximum: 10000.0
    **/
+  public BankAccountResponse balance(Double balance) {
+    this.balance = balance;
+    return this;
+  }
+
   
   @ApiModelProperty(required = true, value = "Currency amount with up to two decimal places")
-  @JsonProperty("balance")
-  @NotNull
- @DecimalMin("0.0") @DecimalMax("10000.0")  public Double getBalance() {
+  @JsonProperty(required = true, value = "balance")
+  @NotNull  @DecimalMin("0.0") @DecimalMax("10000.0")public Double getBalance() {
     return balance;
   }
+
+  @JsonProperty(required = true, value = "balance")
   public void setBalance(Double balance) {
     this.balance = balance;
   }
 
   /**
    **/
+  public BankAccountResponse currency(CurrencyEnum currency) {
+    this.currency = currency;
+    return this;
+  }
+
   
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty("currency")
-  @NotNull
-  public CurrencyEnum getCurrency() {
+  @JsonProperty(required = true, value = "currency")
+  @NotNull public CurrencyEnum getCurrency() {
     return currency;
   }
+
+  @JsonProperty(required = true, value = "currency")
   public void setCurrency(CurrencyEnum currency) {
     this.currency = currency;
   }
 
   /**
    **/
+  public BankAccountResponse createdTimestamp(Date createdTimestamp) {
+    this.createdTimestamp = createdTimestamp;
+    return this;
+  }
+
   
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty("createdTimestamp")
-  @NotNull
-  public Date getCreatedTimestamp() {
+  @JsonProperty(required = true, value = "createdTimestamp")
+  @NotNull public Date getCreatedTimestamp() {
     return createdTimestamp;
   }
+
+  @JsonProperty(required = true, value = "createdTimestamp")
   public void setCreatedTimestamp(Date createdTimestamp) {
     this.createdTimestamp = createdTimestamp;
   }
 
   /**
    **/
+  public BankAccountResponse updatedTimestamp(Date updatedTimestamp) {
+    this.updatedTimestamp = updatedTimestamp;
+    return this;
+  }
+
   
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty("updatedTimestamp")
-  @NotNull
-  public Date getUpdatedTimestamp() {
+  @JsonProperty(required = true, value = "updatedTimestamp")
+  @NotNull public Date getUpdatedTimestamp() {
     return updatedTimestamp;
   }
+
+  @JsonProperty(required = true, value = "updatedTimestamp")
   public void setUpdatedTimestamp(Date updatedTimestamp) {
     this.updatedTimestamp = updatedTimestamp;
   }
@@ -239,6 +409,71 @@ public class BankAccountResponse   {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
+  }
+
+
+  public static BankAccountResponseBuilder<?, ?> builder() {
+    return new BankAccountResponseBuilderImpl();
+  }
+
+  private static final class BankAccountResponseBuilderImpl extends BankAccountResponseBuilder<BankAccountResponse, BankAccountResponseBuilderImpl> {
+
+    @Override
+    protected BankAccountResponseBuilderImpl self() {
+      return this;
+    }
+
+    @Override
+    public BankAccountResponse build() {
+      return new BankAccountResponse(this);
+    }
+  }
+
+  public static abstract class BankAccountResponseBuilder<C extends BankAccountResponse, B extends BankAccountResponseBuilder<C, B>>  {
+    private String accountNumber;
+    private SortCodeEnum sortCode;
+    private String name;
+    private AccountTypeEnum accountType;
+    private Double balance;
+    private CurrencyEnum currency;
+    private Date createdTimestamp;
+    private Date updatedTimestamp;
+    protected abstract B self();
+
+    public abstract C build();
+
+    public B accountNumber(String accountNumber) {
+      this.accountNumber = accountNumber;
+      return self();
+    }
+    public B sortCode(SortCodeEnum sortCode) {
+      this.sortCode = sortCode;
+      return self();
+    }
+    public B name(String name) {
+      this.name = name;
+      return self();
+    }
+    public B accountType(AccountTypeEnum accountType) {
+      this.accountType = accountType;
+      return self();
+    }
+    public B balance(Double balance) {
+      this.balance = balance;
+      return self();
+    }
+    public B currency(CurrencyEnum currency) {
+      this.currency = currency;
+      return self();
+    }
+    public B createdTimestamp(Date createdTimestamp) {
+      this.createdTimestamp = createdTimestamp;
+      return self();
+    }
+    public B updatedTimestamp(Date updatedTimestamp) {
+      this.updatedTimestamp = updatedTimestamp;
+      return self();
+    }
   }
 }
 

@@ -1,20 +1,24 @@
 package com.bank.eagle.gen.model;
 
-import java.util.Objects;
-import java.util.ArrayList;
 import com.bank.eagle.gen.model.CreateUserRequestAddress;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import jakarta.validation.constraints.*;
 import jakarta.validation.Valid;
-import io.swagger.annotations.*;
 
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2025-11-03T11:08:10.131371Z[Europe/London]", comments = "Generator version: 7.17.0")
+import io.swagger.annotations.*;
+import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+
+
+
+@JsonTypeName("UserResponse")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2025-11-03T14:29:53.586085Z[Europe/London]", comments = "Generator version: 7.17.0")
 public class UserResponse   {
-  
   private String id;
   private String name;
   private CreateUserRequestAddress address;
@@ -23,94 +27,167 @@ public class UserResponse   {
   private Date createdTimestamp;
   private Date updatedTimestamp;
 
+  protected UserResponse(UserResponseBuilder<?, ?> b) {
+    this.id = b.id;
+    this.name = b.name;
+    this.address = b.address;
+    this.phoneNumber = b.phoneNumber;
+    this.email = b.email;
+    this.createdTimestamp = b.createdTimestamp;
+    this.updatedTimestamp = b.updatedTimestamp;
+  }
+
+  public UserResponse() {
+  }
+
+  @JsonCreator
+  public UserResponse(
+    @JsonProperty(required = true, value = "id") String id,
+    @JsonProperty(required = true, value = "name") String name,
+    @JsonProperty(required = true, value = "address") CreateUserRequestAddress address,
+    @JsonProperty(required = true, value = "phoneNumber") String phoneNumber,
+    @JsonProperty(required = true, value = "email") String email,
+    @JsonProperty(required = true, value = "createdTimestamp") Date createdTimestamp,
+    @JsonProperty(required = true, value = "updatedTimestamp") Date updatedTimestamp
+  ) {
+    this.id = id;
+    this.name = name;
+    this.address = address;
+    this.phoneNumber = phoneNumber;
+    this.email = email;
+    this.createdTimestamp = createdTimestamp;
+    this.updatedTimestamp = updatedTimestamp;
+  }
+
   /**
    **/
+  public UserResponse id(String id) {
+    this.id = id;
+    return this;
+  }
+
   
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty("id")
-  @NotNull
-  public String getId() {
+  @JsonProperty(required = true, value = "id")
+  @NotNull public String getId() {
     return id;
   }
+
+  @JsonProperty(required = true, value = "id")
   public void setId(String id) {
     this.id = id;
   }
 
   /**
    **/
+  public UserResponse name(String name) {
+    this.name = name;
+    return this;
+  }
+
   
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty("name")
-  @NotNull
-  public String getName() {
+  @JsonProperty(required = true, value = "name")
+  @NotNull public String getName() {
     return name;
   }
+
+  @JsonProperty(required = true, value = "name")
   public void setName(String name) {
     this.name = name;
   }
 
   /**
    **/
+  public UserResponse address(CreateUserRequestAddress address) {
+    this.address = address;
+    return this;
+  }
+
   
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty("address")
-  @NotNull
-  @Valid
-  public CreateUserRequestAddress getAddress() {
+  @JsonProperty(required = true, value = "address")
+  @NotNull @Valid public CreateUserRequestAddress getAddress() {
     return address;
   }
+
+  @JsonProperty(required = true, value = "address")
   public void setAddress(CreateUserRequestAddress address) {
     this.address = address;
   }
 
   /**
    **/
+  public UserResponse phoneNumber(String phoneNumber) {
+    this.phoneNumber = phoneNumber;
+    return this;
+  }
+
   
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty("phoneNumber")
-  @NotNull
-  public String getPhoneNumber() {
+  @JsonProperty(required = true, value = "phoneNumber")
+  @NotNull public String getPhoneNumber() {
     return phoneNumber;
   }
+
+  @JsonProperty(required = true, value = "phoneNumber")
   public void setPhoneNumber(String phoneNumber) {
     this.phoneNumber = phoneNumber;
   }
 
   /**
    **/
+  public UserResponse email(String email) {
+    this.email = email;
+    return this;
+  }
+
   
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty("email")
-  @NotNull
-  public String getEmail() {
+  @JsonProperty(required = true, value = "email")
+  @NotNull public String getEmail() {
     return email;
   }
+
+  @JsonProperty(required = true, value = "email")
   public void setEmail(String email) {
     this.email = email;
   }
 
   /**
    **/
+  public UserResponse createdTimestamp(Date createdTimestamp) {
+    this.createdTimestamp = createdTimestamp;
+    return this;
+  }
+
   
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty("createdTimestamp")
-  @NotNull
-  public Date getCreatedTimestamp() {
+  @JsonProperty(required = true, value = "createdTimestamp")
+  @NotNull public Date getCreatedTimestamp() {
     return createdTimestamp;
   }
+
+  @JsonProperty(required = true, value = "createdTimestamp")
   public void setCreatedTimestamp(Date createdTimestamp) {
     this.createdTimestamp = createdTimestamp;
   }
 
   /**
    **/
+  public UserResponse updatedTimestamp(Date updatedTimestamp) {
+    this.updatedTimestamp = updatedTimestamp;
+    return this;
+  }
+
   
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty("updatedTimestamp")
-  @NotNull
-  public Date getUpdatedTimestamp() {
+  @JsonProperty(required = true, value = "updatedTimestamp")
+  @NotNull public Date getUpdatedTimestamp() {
     return updatedTimestamp;
   }
+
+  @JsonProperty(required = true, value = "updatedTimestamp")
   public void setUpdatedTimestamp(Date updatedTimestamp) {
     this.updatedTimestamp = updatedTimestamp;
   }
@@ -164,6 +241,66 @@ public class UserResponse   {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
+  }
+
+
+  public static UserResponseBuilder<?, ?> builder() {
+    return new UserResponseBuilderImpl();
+  }
+
+  private static final class UserResponseBuilderImpl extends UserResponseBuilder<UserResponse, UserResponseBuilderImpl> {
+
+    @Override
+    protected UserResponseBuilderImpl self() {
+      return this;
+    }
+
+    @Override
+    public UserResponse build() {
+      return new UserResponse(this);
+    }
+  }
+
+  public static abstract class UserResponseBuilder<C extends UserResponse, B extends UserResponseBuilder<C, B>>  {
+    private String id;
+    private String name;
+    private CreateUserRequestAddress address;
+    private String phoneNumber;
+    private String email;
+    private Date createdTimestamp;
+    private Date updatedTimestamp;
+    protected abstract B self();
+
+    public abstract C build();
+
+    public B id(String id) {
+      this.id = id;
+      return self();
+    }
+    public B name(String name) {
+      this.name = name;
+      return self();
+    }
+    public B address(CreateUserRequestAddress address) {
+      this.address = address;
+      return self();
+    }
+    public B phoneNumber(String phoneNumber) {
+      this.phoneNumber = phoneNumber;
+      return self();
+    }
+    public B email(String email) {
+      this.email = email;
+      return self();
+    }
+    public B createdTimestamp(Date createdTimestamp) {
+      this.createdTimestamp = createdTimestamp;
+      return self();
+    }
+    public B updatedTimestamp(Date updatedTimestamp) {
+      this.updatedTimestamp = updatedTimestamp;
+      return self();
+    }
   }
 }
 

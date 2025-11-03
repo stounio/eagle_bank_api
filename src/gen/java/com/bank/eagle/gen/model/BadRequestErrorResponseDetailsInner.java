@@ -1,58 +1,100 @@
 package com.bank.eagle.gen.model;
 
-import java.util.Objects;
-import java.util.ArrayList;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import jakarta.validation.constraints.*;
 import jakarta.validation.Valid;
-import io.swagger.annotations.*;
 
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2025-11-03T11:08:10.131371Z[Europe/London]", comments = "Generator version: 7.17.0")
+import io.swagger.annotations.*;
+import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+
+
+
+@JsonTypeName("BadRequestErrorResponse_details_inner")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2025-11-03T14:29:53.586085Z[Europe/London]", comments = "Generator version: 7.17.0")
 public class BadRequestErrorResponseDetailsInner   {
-  
   private String field;
   private String message;
   private String type;
 
+  protected BadRequestErrorResponseDetailsInner(BadRequestErrorResponseDetailsInnerBuilder<?, ?> b) {
+    this.field = b.field;
+    this.message = b.message;
+    this.type = b.type;
+  }
+
+  public BadRequestErrorResponseDetailsInner() {
+  }
+
+  @JsonCreator
+  public BadRequestErrorResponseDetailsInner(
+    @JsonProperty(required = true, value = "field") String field,
+    @JsonProperty(required = true, value = "message") String message,
+    @JsonProperty(required = true, value = "type") String type
+  ) {
+    this.field = field;
+    this.message = message;
+    this.type = type;
+  }
+
   /**
    **/
+  public BadRequestErrorResponseDetailsInner field(String field) {
+    this.field = field;
+    return this;
+  }
+
   
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty("field")
-  @NotNull
-  public String getField() {
+  @JsonProperty(required = true, value = "field")
+  @NotNull public String getField() {
     return field;
   }
+
+  @JsonProperty(required = true, value = "field")
   public void setField(String field) {
     this.field = field;
   }
 
   /**
    **/
+  public BadRequestErrorResponseDetailsInner message(String message) {
+    this.message = message;
+    return this;
+  }
+
   
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty("message")
-  @NotNull
-  public String getMessage() {
+  @JsonProperty(required = true, value = "message")
+  @NotNull public String getMessage() {
     return message;
   }
+
+  @JsonProperty(required = true, value = "message")
   public void setMessage(String message) {
     this.message = message;
   }
 
   /**
    **/
+  public BadRequestErrorResponseDetailsInner type(String type) {
+    this.type = type;
+    return this;
+  }
+
   
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty("type")
-  @NotNull
-  public String getType() {
+  @JsonProperty(required = true, value = "type")
+  @NotNull public String getType() {
     return type;
   }
+
+  @JsonProperty(required = true, value = "type")
   public void setType(String type) {
     this.type = type;
   }
@@ -98,6 +140,46 @@ public class BadRequestErrorResponseDetailsInner   {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
+  }
+
+
+  public static BadRequestErrorResponseDetailsInnerBuilder<?, ?> builder() {
+    return new BadRequestErrorResponseDetailsInnerBuilderImpl();
+  }
+
+  private static final class BadRequestErrorResponseDetailsInnerBuilderImpl extends BadRequestErrorResponseDetailsInnerBuilder<BadRequestErrorResponseDetailsInner, BadRequestErrorResponseDetailsInnerBuilderImpl> {
+
+    @Override
+    protected BadRequestErrorResponseDetailsInnerBuilderImpl self() {
+      return this;
+    }
+
+    @Override
+    public BadRequestErrorResponseDetailsInner build() {
+      return new BadRequestErrorResponseDetailsInner(this);
+    }
+  }
+
+  public static abstract class BadRequestErrorResponseDetailsInnerBuilder<C extends BadRequestErrorResponseDetailsInner, B extends BadRequestErrorResponseDetailsInnerBuilder<C, B>>  {
+    private String field;
+    private String message;
+    private String type;
+    protected abstract B self();
+
+    public abstract C build();
+
+    public B field(String field) {
+      this.field = field;
+      return self();
+    }
+    public B message(String message) {
+      this.message = message;
+      return self();
+    }
+    public B type(String type) {
+      this.type = type;
+      return self();
+    }
   }
 }
 

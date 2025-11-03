@@ -1,73 +1,123 @@
 package com.bank.eagle.gen.model;
 
-import java.util.Objects;
-import java.util.ArrayList;
 import com.bank.eagle.gen.model.CreateUserRequestAddress;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import jakarta.validation.constraints.*;
 import jakarta.validation.Valid;
-import io.swagger.annotations.*;
 
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2025-11-03T11:08:10.131371Z[Europe/London]", comments = "Generator version: 7.17.0")
+import io.swagger.annotations.*;
+import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+
+
+
+@JsonTypeName("CreateUserRequest")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2025-11-03T14:29:53.586085Z[Europe/London]", comments = "Generator version: 7.17.0")
 public class CreateUserRequest   {
-  
   private String name;
   private CreateUserRequestAddress address;
   private String phoneNumber;
   private String email;
 
+  protected CreateUserRequest(CreateUserRequestBuilder<?, ?> b) {
+    this.name = b.name;
+    this.address = b.address;
+    this.phoneNumber = b.phoneNumber;
+    this.email = b.email;
+  }
+
+  public CreateUserRequest() {
+  }
+
+  @JsonCreator
+  public CreateUserRequest(
+    @JsonProperty(required = true, value = "name") String name,
+    @JsonProperty(required = true, value = "address") CreateUserRequestAddress address,
+    @JsonProperty(required = true, value = "phoneNumber") String phoneNumber,
+    @JsonProperty(required = true, value = "email") String email
+  ) {
+    this.name = name;
+    this.address = address;
+    this.phoneNumber = phoneNumber;
+    this.email = email;
+  }
+
   /**
    **/
+  public CreateUserRequest name(String name) {
+    this.name = name;
+    return this;
+  }
+
   
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty("name")
-  @NotNull
-  public String getName() {
+  @JsonProperty(required = true, value = "name")
+  @NotNull public String getName() {
     return name;
   }
+
+  @JsonProperty(required = true, value = "name")
   public void setName(String name) {
     this.name = name;
   }
 
   /**
    **/
+  public CreateUserRequest address(CreateUserRequestAddress address) {
+    this.address = address;
+    return this;
+  }
+
   
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty("address")
-  @NotNull
-  @Valid
-  public CreateUserRequestAddress getAddress() {
+  @JsonProperty(required = true, value = "address")
+  @NotNull @Valid public CreateUserRequestAddress getAddress() {
     return address;
   }
+
+  @JsonProperty(required = true, value = "address")
   public void setAddress(CreateUserRequestAddress address) {
     this.address = address;
   }
 
   /**
    **/
+  public CreateUserRequest phoneNumber(String phoneNumber) {
+    this.phoneNumber = phoneNumber;
+    return this;
+  }
+
   
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty("phoneNumber")
-  @NotNull
-  public String getPhoneNumber() {
+  @JsonProperty(required = true, value = "phoneNumber")
+  @NotNull public String getPhoneNumber() {
     return phoneNumber;
   }
+
+  @JsonProperty(required = true, value = "phoneNumber")
   public void setPhoneNumber(String phoneNumber) {
     this.phoneNumber = phoneNumber;
   }
 
   /**
    **/
+  public CreateUserRequest email(String email) {
+    this.email = email;
+    return this;
+  }
+
   
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty("email")
-  @NotNull
-  public String getEmail() {
+  @JsonProperty(required = true, value = "email")
+  @NotNull public String getEmail() {
     return email;
   }
+
+  @JsonProperty(required = true, value = "email")
   public void setEmail(String email) {
     this.email = email;
   }
@@ -115,6 +165,51 @@ public class CreateUserRequest   {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
+  }
+
+
+  public static CreateUserRequestBuilder<?, ?> builder() {
+    return new CreateUserRequestBuilderImpl();
+  }
+
+  private static final class CreateUserRequestBuilderImpl extends CreateUserRequestBuilder<CreateUserRequest, CreateUserRequestBuilderImpl> {
+
+    @Override
+    protected CreateUserRequestBuilderImpl self() {
+      return this;
+    }
+
+    @Override
+    public CreateUserRequest build() {
+      return new CreateUserRequest(this);
+    }
+  }
+
+  public static abstract class CreateUserRequestBuilder<C extends CreateUserRequest, B extends CreateUserRequestBuilder<C, B>>  {
+    private String name;
+    private CreateUserRequestAddress address;
+    private String phoneNumber;
+    private String email;
+    protected abstract B self();
+
+    public abstract C build();
+
+    public B name(String name) {
+      this.name = name;
+      return self();
+    }
+    public B address(CreateUserRequestAddress address) {
+      this.address = address;
+      return self();
+    }
+    public B phoneNumber(String phoneNumber) {
+      this.phoneNumber = phoneNumber;
+      return self();
+    }
+    public B email(String email) {
+      this.email = email;
+      return self();
+    }
   }
 }
 
