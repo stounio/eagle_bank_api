@@ -12,12 +12,37 @@ import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 
+import static jakarta.ws.rs.core.MediaType.APPLICATION_JSON;
+import static jakarta.ws.rs.core.Response.Status.*;
+import static jakarta.ws.rs.core.Response.status;
+
 @Path("/auth")
 public class AuthenticationResource {
+
+    @POST
+    @Path("/register")
+    @Consumes(APPLICATION_JSON)
+    @Produces(APPLICATION_JSON)
+    public Response register(Map<String, String> credentials) {
+        String username = credentials.get("username");
+        String password = credentials.get("password");
+
+        if (username == null || password == null || username.isBlank() || password.isBlank()) {
+            Map<String, String> error = new HashMap<>();
+            error.put("error", "Username and password are required");
+            return status(BAD_REQUEST).entity(error).build();
+        }
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "User registered successfully");
+        response.put("username", username);
+        return status(CREATED).entity(response).build();
+    }
+
+
     @POST
     @Path("/login")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(APPLICATION_JSON)
+    @Produces(APPLICATION_JSON)
     public Response login(Map<String, String> credentials) {
         String username = credentials.get("username");
         String password = credentials.get("password");
@@ -36,7 +61,7 @@ public class AuthenticationResource {
         } else {
             Map<String, String> error = new HashMap<>();
             error.put("error", "Invalid credentials");
-            return Response.status(Response.Status.UNAUTHORIZED).entity(error).build();
+            return status(UNAUTHORIZED).entity(error).build();
         }
     }
 }
