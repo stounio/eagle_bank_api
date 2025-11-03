@@ -40,11 +40,26 @@ class AuthenticationResourceTest {
 
     @Test
     void loginSuccess() {
+        String randomUsername = "loginuser" + currentTimeMillis();
+        String password = "password";
+        // Register the user first
         given()
                 .contentType("application/json")
                 .body("""
-                            {"username": "user", "password": "password"}
-                        """)
+                            {"username": "%s", "password": "%s"}
+                        """.formatted(randomUsername, password))
+                .when()
+                .post("/auth/register")
+                .then()
+                .statusCode(201)
+                .body("message", equalTo("User registered successfully"))
+                .body("username", equalTo(randomUsername));
+        // Now login with the same credentials
+        given()
+                .contentType("application/json")
+                .body("""
+                            {"username": "%s", "password": "%s"}
+                        """.formatted(randomUsername, password))
                 .when()
                 .post("/auth/login")
                 .then()
@@ -55,11 +70,25 @@ class AuthenticationResourceTest {
 
     @Test
     void loginFailure() {
+        String randomUsername = "failuser" + currentTimeMillis();
+        // Register the user first
         given()
                 .contentType("application/json")
                 .body("""
-                            {"username": "user", "password": "wrongpassword"}
-                        """)
+                            {"username": "%s", "password": "%s"}
+                        """.formatted(randomUsername, "correctpassword"))
+                .when()
+                .post("/auth/register")
+                .then()
+                .statusCode(201)
+                .body("message", equalTo("User registered successfully"))
+                .body("username", equalTo(randomUsername));
+        // Attempt to login with incorrect password
+        given()
+                .contentType("application/json")
+                .body("""
+                            {"username": "%s", "password": "%s"}
+                        """.formatted(randomUsername, "wrongpassword"))
                 .when()
                 .post("/auth/login")
                 .then()

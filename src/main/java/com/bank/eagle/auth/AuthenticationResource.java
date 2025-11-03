@@ -110,8 +110,8 @@ public class AuthenticationResource {
             )
     })
     public Response login(LoginRequest request) {
-        // Stub authentication: accept username 'user' and password 'password'
-        if ("user".equals(request.username) && "password".equals(request.password)) {
+        RegisteredUser registeredUser = registeredUserService.findUser(request.username).orElseThrow();
+        if (registeredUser.getPassword().equals(request.password)) {
             LoginResponse response = new LoginResponse();
             response.token = Jwt.issuer("eagle-api")
                     .subject(request.username)
