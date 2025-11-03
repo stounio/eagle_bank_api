@@ -2,6 +2,23 @@
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
+## Project requirements
+
+* Apache Maven
+* Quarkus CLI
+* OpenAPI Generator CLI
+
+## Generating a new Quarkus project
+
+Command:
+
+```shell
+mvn io.quarkus.platform:quarkus-maven-plugin:3.28.4:create \
+    -DprojectGroupId=com.bank.eagle \
+    -DprojectArtifactId=api \
+    -Dextensions="resteasy-reactive"
+```
+
 If you want to learn more about Quarkus, please visit its website: <https://quarkus.io/>.
 
 ## Eagle Bank API
