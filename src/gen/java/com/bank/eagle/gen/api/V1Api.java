@@ -28,7 +28,7 @@ import jakarta.validation.Valid;
 * Represents a collection of functions to interact with the API endpoints.
 */
 @Api(description = "the v1 API")
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2025-11-03T14:29:53.586085Z[Europe/London]", comments = "Generator version: 7.17.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2025-11-03T15:19:25.171821Z[Europe/London]", comments = "Generator version: 7.17.0")
 public interface V1Api {
 
     /**
@@ -55,7 +55,7 @@ public interface V1Api {
         @ApiResponse(code = 401, message = "Access token is missing or invalid", response = ErrorResponse.class),
         @ApiResponse(code = 403, message = "The user is not allowed to access the transaction", response = ErrorResponse.class),
         @ApiResponse(code = 500, message = "An unexpected error occurred", response = ErrorResponse.class) })
-    BankAccountResponse createAccount(@Valid @NotNull CreateBankAccountRequest createBankAccountRequest);
+    Response createAccount(@Valid @NotNull CreateBankAccountRequest createBankAccountRequest);
 
 
     /**
@@ -87,7 +87,7 @@ public interface V1Api {
         @ApiResponse(code = 404, message = "Bank account was not found", response = ErrorResponse.class),
         @ApiResponse(code = 422, message = "Insufficient funds to process transaction", response = ErrorResponse.class),
         @ApiResponse(code = 500, message = "An unexpected error occurred", response = ErrorResponse.class) })
-    TransactionResponse createTransaction(@PathParam("accountNumber") @Pattern(regexp="^01\\d{6}$") @ApiParam("Account number of the bank account") String accountNumber,@Valid @NotNull CreateTransactionRequest createTransactionRequest);
+    Response createTransaction(@PathParam("accountNumber") @Pattern(regexp="^01\\d{6}$") @ApiParam("Account number of the bank account") String accountNumber,@Valid @NotNull CreateTransactionRequest createTransactionRequest);
 
 
     /**
@@ -107,7 +107,7 @@ public interface V1Api {
         @ApiResponse(code = 201, message = "User has been created successfully", response = UserResponse.class),
         @ApiResponse(code = 400, message = "Invalid details supplied", response = Void.class),
         @ApiResponse(code = 500, message = "An unexpected error occurred", response = ErrorResponse.class) })
-    UserResponse createUser(@Valid @NotNull CreateUserRequest createUserRequest);
+    Response createUser(@Valid @NotNull CreateUserRequest createUserRequest);
 
 
     /**
@@ -135,7 +135,7 @@ public interface V1Api {
         @ApiResponse(code = 403, message = "The user is not allowed to delete the bank account details", response = ErrorResponse.class),
         @ApiResponse(code = 404, message = "Bank account was not found", response = ErrorResponse.class),
         @ApiResponse(code = 500, message = "An unexpected error occurred", response = ErrorResponse.class) })
-    void deleteAccountByAccountNumber(@PathParam("accountNumber") @Pattern(regexp="^01\\d{6}$") @ApiParam("Account number of the bank account") String accountNumber);
+    Response deleteAccountByAccountNumber(@PathParam("accountNumber") @Pattern(regexp="^01\\d{6}$") @ApiParam("Account number of the bank account") String accountNumber);
 
 
     /**
@@ -165,7 +165,7 @@ public interface V1Api {
         @ApiResponse(code = 403, message = "The user is not allowed to access the transaction", response = ErrorResponse.class),
         @ApiResponse(code = 409, message = "A user cannot be deleted when they are associated with a bank account", response = ErrorResponse.class),
         @ApiResponse(code = 500, message = "An unexpected error occurred", response = ErrorResponse.class) })
-    void deleteUserByID(@PathParam("userId") @Pattern(regexp="^usr-[A-Za-z0-9]+$") @ApiParam("ID of the user") String userId);
+    Response deleteUserByID(@PathParam("userId") @Pattern(regexp="^usr-[A-Za-z0-9]+$") @ApiParam("ID of the user") String userId);
 
 
     /**
@@ -193,7 +193,7 @@ public interface V1Api {
         @ApiResponse(code = 403, message = "The user is not allowed to access the bank account details", response = ErrorResponse.class),
         @ApiResponse(code = 404, message = "Bank account was not found", response = ErrorResponse.class),
         @ApiResponse(code = 500, message = "An unexpected error occurred", response = ErrorResponse.class) })
-    BankAccountResponse fetchAccountByAccountNumber(@PathParam("accountNumber") @Pattern(regexp="^01\\d{6}$") @ApiParam("Account number of the bank account") String accountNumber);
+    Response fetchAccountByAccountNumber(@PathParam("accountNumber") @Pattern(regexp="^01\\d{6}$") @ApiParam("Account number of the bank account") String accountNumber);
 
 
     /**
@@ -222,7 +222,7 @@ public interface V1Api {
         @ApiResponse(code = 403, message = "The user is not allowed to access the transaction", response = ErrorResponse.class),
         @ApiResponse(code = 404, message = "Bank account was not found", response = ErrorResponse.class),
         @ApiResponse(code = 500, message = "An unexpected error occurred", response = ErrorResponse.class) })
-    TransactionResponse fetchAccountTransactionByID(@PathParam("accountNumber") @Pattern(regexp="^01\\d{6}$") @ApiParam("Account number of the bank account") String accountNumber,@PathParam("transactionId") @Pattern(regexp="^tan-[A-Za-z0-9]$") @ApiParam("ID of the transaction") String transactionId);
+    Response fetchAccountTransactionByID(@PathParam("accountNumber") @Pattern(regexp="^01\\d{6}$") @ApiParam("Account number of the bank account") String accountNumber,@PathParam("transactionId") @Pattern(regexp="^tan-[A-Za-z0-9]$") @ApiParam("ID of the transaction") String transactionId);
 
 
     /**
@@ -250,7 +250,7 @@ public interface V1Api {
         @ApiResponse(code = 403, message = "The user is not allowed to access the transaction", response = ErrorResponse.class),
         @ApiResponse(code = 404, message = "User was not found", response = ErrorResponse.class),
         @ApiResponse(code = 500, message = "An unexpected error occurred", response = ErrorResponse.class) })
-    UserResponse fetchUserByID(@PathParam("userId") @Pattern(regexp="^usr-[A-Za-z0-9]+$") @ApiParam("ID of the user") String userId);
+    Response fetchUserByID(@PathParam("userId") @Pattern(regexp="^usr-[A-Za-z0-9]+$") @ApiParam("ID of the user") String userId);
 
 
     /**
@@ -278,7 +278,7 @@ public interface V1Api {
         @ApiResponse(code = 403, message = "The user is not allowed to access the transactions", response = ErrorResponse.class),
         @ApiResponse(code = 404, message = "Bank account was not found", response = ErrorResponse.class),
         @ApiResponse(code = 500, message = "An unexpected error occurred", response = ErrorResponse.class) })
-    ListTransactionsResponse listAccountTransaction(@PathParam("accountNumber") @Pattern(regexp="^01\\d{6}$") @ApiParam("Account number of the bank account") String accountNumber);
+    Response listAccountTransaction(@PathParam("accountNumber") @Pattern(regexp="^01\\d{6}$") @ApiParam("Account number of the bank account") String accountNumber);
 
 
     /**
@@ -299,7 +299,7 @@ public interface V1Api {
         @ApiResponse(code = 200, message = "The list of bank accounts", response = ListBankAccountsResponse.class),
         @ApiResponse(code = 401, message = "Access token is missing or invalid", response = ErrorResponse.class),
         @ApiResponse(code = 500, message = "An unexpected error occurred", response = ErrorResponse.class) })
-    ListBankAccountsResponse listAccounts();
+    Response listAccounts();
 
 
     /**
@@ -329,7 +329,7 @@ public interface V1Api {
         @ApiResponse(code = 403, message = "The user is not allowed to update the bank account details", response = ErrorResponse.class),
         @ApiResponse(code = 404, message = "Bank account was not found", response = ErrorResponse.class),
         @ApiResponse(code = 500, message = "An unexpected error occurred", response = ErrorResponse.class) })
-    BankAccountResponse updateAccountByAccountNumber(@PathParam("accountNumber") @Pattern(regexp="^01\\d{6}$") @ApiParam("Account number of the bank account") String accountNumber,@Valid @NotNull UpdateBankAccountRequest updateBankAccountRequest);
+    Response updateAccountByAccountNumber(@PathParam("accountNumber") @Pattern(regexp="^01\\d{6}$") @ApiParam("Account number of the bank account") String accountNumber,@Valid @NotNull UpdateBankAccountRequest updateBankAccountRequest);
 
 
     /**
@@ -359,6 +359,6 @@ public interface V1Api {
         @ApiResponse(code = 403, message = "The user is not allowed to access the transaction", response = ErrorResponse.class),
         @ApiResponse(code = 404, message = "User was not found", response = ErrorResponse.class),
         @ApiResponse(code = 500, message = "An unexpected error occurred", response = ErrorResponse.class) })
-    UserResponse updateUserByID(@PathParam("userId") @Pattern(regexp="^usr-[A-Za-z0-9]+$") @ApiParam("ID of the user") String userId,@Valid @NotNull UpdateUserRequest updateUserRequest);
+    Response updateUserByID(@PathParam("userId") @Pattern(regexp="^usr-[A-Za-z0-9]+$") @ApiParam("ID of the user") String userId,@Valid @NotNull UpdateUserRequest updateUserRequest);
 
 }
