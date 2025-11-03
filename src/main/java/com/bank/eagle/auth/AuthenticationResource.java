@@ -6,6 +6,10 @@ import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.Response;
+import org.eclipse.microprofile.openapi.annotations.media.Content;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
 
 import java.time.Duration;
 
@@ -18,18 +22,22 @@ class RegisterUserRequest {
     public String username;
     public String password;
 }
+
 class RegisterUserResponse {
     public String message;
     public String username;
 }
+
 class LoginRequest {
     public String username;
     public String password;
 }
+
 class LoginResponse {
     public String token;
     public String tokenType;
 }
+
 class ErrorResponse {
     public String error;
 }
@@ -40,6 +48,23 @@ public class AuthenticationResource {
     @Path("/register")
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
+    @APIResponses({
+            @APIResponse(
+                    responseCode = "201",
+                    description = "User registered successfully",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = RegisterUserResponse.class)
+                    )
+            ),
+            @APIResponse(
+                    responseCode = "400",
+                    description = "Invalid input",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = ErrorResponse.class)
+                    ))
+    })
     public Response register(RegisterUserRequest request) {
         if (request.username == null || request.password == null || request.username.isBlank() || request.password.isBlank()) {
             ErrorResponse error = new ErrorResponse();
@@ -56,6 +81,24 @@ public class AuthenticationResource {
     @Path("/login")
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
+    @APIResponses({
+            @APIResponse(
+                    responseCode = "200",
+                    description = "User authenticated successfully",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = LoginResponse.class)
+                    )
+            ),
+            @APIResponse(
+                    responseCode = "401",
+                    description = "Invalid credentials",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = ErrorResponse.class)
+                    )
+            )
+    })
     public Response login(LoginRequest request) {
         // Stub authentication: accept username 'user' and password 'password'
         if ("user".equals(request.username) && "password".equals(request.password)) {
