@@ -1,6 +1,6 @@
-# api
+# Eagle Bank API - Quarkus Project
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+This project uses Quarkus, the Supersonic Subatomic Java Framework to demonstrate a proof of concept for the Eagle Bank API.
 
 ## Project requirements
 
