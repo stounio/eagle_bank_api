@@ -3,23 +3,25 @@ package com.bank.eagle.auth;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
+import static java.lang.System.currentTimeMillis;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 
 class AuthenticationResourceTest {
     @Test
     void registerUserSuccess() {
+        String randomUsername = "newuser" + currentTimeMillis();
         given()
                 .contentType("application/json")
                 .body("""
-                            {"username": "newuser", "password": "newpassword"}
-                        """)
+                            {"username": "%s", "password": "newpassword"}
+                        """.formatted(randomUsername))
                 .when()
                 .post("/auth/register")
                 .then()
                 .statusCode(201)
                 .body("message", equalTo("User registered successfully"))
-                .body("username", equalTo("newuser"));
+                .body("username", equalTo(randomUsername));
     }
 
     @Test
@@ -64,5 +66,32 @@ class AuthenticationResourceTest {
                 .statusCode(401)
                 .body("error", equalTo("Invalid credentials"));
     }
-}
 
+    @Test
+    void registerUserDuplicateUsername() {
+        String randomUsername = "user" + currentTimeMillis();
+        // First registration should succeed
+        given()
+                .contentType("application/json")
+                .body("""                            
+                        {"username": "%s", "password": "password1"}
+                        """.formatted(randomUsername))
+                .when()
+                .post("/auth/register")
+                .then()
+                .statusCode(201)
+                .body("message", equalTo("User registered successfully"))
+                .body("username", equalTo(randomUsername));
+
+        // Second registration with same username should fail
+        given()
+                .contentType("application/json")
+                .body("""
+                            {"username": "%s", "password": "password2"}
+                        """.formatted(randomUsername))
+                .when()
+                .post("/auth/register")
+                .then()
+                .statusCode(500);
+    }
+}

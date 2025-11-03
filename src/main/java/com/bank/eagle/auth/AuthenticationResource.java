@@ -1,6 +1,9 @@
 package com.bank.eagle.auth;
 
+import com.bank.eagle.auth.model.RegisteredUser;
+import com.bank.eagle.auth.service.RegisteredUserService;
 import io.smallrye.jwt.build.Jwt;
+import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
@@ -44,6 +47,10 @@ class ErrorResponse {
 
 @Path("/auth")
 public class AuthenticationResource {
+
+    @Inject
+    private RegisteredUserService registeredUserService;
+
     @POST
     @Path("/register")
     @Consumes(APPLICATION_JSON)
@@ -71,6 +78,9 @@ public class AuthenticationResource {
             error.error = "Username and password are required";
             return status(BAD_REQUEST).entity(error).build();
         }
+
+        registeredUserService.registerUser(new RegisteredUser(request.username, request.password));
+
         RegisterUserResponse response = new RegisterUserResponse();
         response.message = "User registered successfully";
         response.username = request.username;
