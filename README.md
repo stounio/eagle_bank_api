@@ -1,12 +1,13 @@
 # Eagle Bank API - Quarkus Project
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework to demonstrate a proof of concept for the Eagle Bank API.
+This project is a proof of concept for the Eagle Bank API using Quarkus REST framework.
 
 ## Project requirements
 
 * Apache Maven
 * Quarkus CLI
 * OpenAPI Generator CLI
+* GraalVM (for native executable builds)
 
 ## Generating a new Quarkus project
 
