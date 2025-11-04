@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.bank.eagle</groupId>
     <artifactId>api</artifactId>
@@ -19,6 +20,7 @@
         <swagger-core-version>1.5.22</swagger-core-version>
         <build-helper-maven-plugin.version>1.9.1</build-helper-maven-plugin.version>
         <jakarta.servlet-api.version>6.2.0-M1</jakarta.servlet-api.version>
+        <openapi-generator-maven-plugin.version>7.17.0</openapi-generator-maven-plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -134,7 +136,8 @@
                 </executions>
                 <configuration>
                     <systemPropertyVariables>
-                        <native.image.path>${project.build.directory}/${project.build.finalName}-runner</native.image.path>
+                        <native.image.path>${project.build.directory}/${project.build.finalName}-runner
+                        </native.image.path>
                         <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
                         <maven.home>${maven.home}</maven.home>
                     </systemPropertyVariables>
@@ -155,6 +158,31 @@
                             <sources>
                                 <source>src/gen/java</source>
                             </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.openapitools</groupId>
+                <artifactId>openapi-generator-maven-plugin</artifactId>
+                <version>${openapi-generator-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>generate-jaxrs-stubs</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>${project.basedir}/src/main/openapi/openapi.yaml</inputSpec>
+                            <generatorName>jaxrs-spec</generatorName>
+                            <configOptions>
+                                <sourceFolder>src/gen/java</sourceFolder>
+                                <apiPackage>com.bank.eagle.gen.api</apiPackage>
+                                <modelPackage>com.bank.eagle.gen.model</modelPackage>
+                            </configOptions>
+                            <additionalProperties>
+                                useJakartaEe=true,interfaceOnly=true,generateBuilders=true,returnResponse=true
+                            </additionalProperties>
                         </configuration>
                     </execution>
                 </executions>
